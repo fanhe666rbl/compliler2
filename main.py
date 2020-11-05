@@ -101,6 +101,8 @@ def analyse(ob):
             elif p[f[t_stack.peek()]][f[o]] == 0:
                 t_stack.pop()
                 i += 1
+                print("I)")
+                print("R")
 
     pass
 
