@@ -145,7 +145,7 @@ def opg(filename):
     fo = open(filename)
     ob = fo.read()
     # print(fo.readable())
-    # print(len(ob))
+    print(ob)
     analyse(ob)
     fo.close()
     return 0
