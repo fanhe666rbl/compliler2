@@ -107,6 +107,9 @@ def analyse(ob):
                     print("RE")
                     return 0
             else:
+                if p[f[t_stack.peek()]][f['#']] == 'N':
+                    print('E')
+                    return 0
                 if protocol(t_stack, n_stack):
                     print('R')
                     # print(t_stack.peek())
@@ -145,7 +148,7 @@ def opg(filename):
     fo = open(filename)
     ob = fo.read()
     # print(fo.readable())
-    print(ob)
+    # print(ob)
     analyse(ob)
     fo.close()
     return 0
