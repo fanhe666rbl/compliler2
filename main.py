@@ -104,9 +104,9 @@ def analyse(ob):
 
 def opg(filename):
     fo = open(filename)
-    for line in fo:
-        analyse(line)
-        print("----------")
+    ob = fo.read()
+    analyse(ob)
+        # print("----------")
     # print(str)
     fo.close()
     return 0
