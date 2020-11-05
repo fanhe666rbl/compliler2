@@ -1,0 +1,20 @@
+           Token
+BEGIN:	Begin
+END	End	
+FOR	For	
+IF	If	fsds12333 12345 222aaa 00000
+THEN	Then	
+ELSE	Else	
+Ident(name)
+	Int(value)
+: 	Colon
++ 	Plus
+* 	Star
+, 	Comma
+( 	LParenthesis
+) 	RParenthesis
+:= 	Assign
+	Unknown 111 aaa111 111 00000 +
+
+
+
