@@ -98,6 +98,9 @@ def analyse(ob):
                 t_stack.push(o)
                 print('I'+o)
                 i += 1
+            elif p[f[t_stack.peek()]][f[o]] == 0:
+                t_stack.pop()
+                i += 1
 
     pass
 
@@ -105,9 +108,9 @@ def analyse(ob):
 def opg(filename):
     fo = open(filename)
     ob = fo.read()
+    # print(fo.readable())
+    # print(len(ob))
     analyse(ob)
-        # print("----------")
-    # print(str)
     fo.close()
     return 0
 
