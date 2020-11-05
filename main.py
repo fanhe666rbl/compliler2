@@ -13,7 +13,7 @@ p = [
     [1, 1, -1, -1, 1, 1],
     [1, 1, 'N', 'N', 1, 1],
     [-1, -1, -1, -1, 0, 'N'],
-    [1, 1, 'N', 'N', 1, 'N'],
+    [1, 1, 'N', 'N', 1, 1],
     [-1, -1, -1, -1, 'N', 'N']
 ]
 
@@ -43,13 +43,43 @@ def protocol(t_stack, n_stack):
     o = t_stack.pop()
     # print(o)
     if o == 'i':
+        if n_stack.is_empty():
+            return False
+        if not n_stack.pop() == 'i':
+            return False
         n_stack.push('N')
         return True
+    elif o == ')':
+        if not t_stack.is_empty() and t_stack.pop() == '(':
+            if not n_stack.is_empty():
+                if not n_stack.pop() == ')':
+                    return False
+                if n_stack.is_empty():
+                    return False
+                if not n_stack.pop() == 'N':
+                    return False
+                if n_stack.is_empty():
+                    return False
+                if not n_stack.pop() == '(':
+                    return False
+                n_stack.push('N')
+                return True
+            else:
+                return False
+        else:
+            return False
     else:
         if not n_stack.is_empty():
-            n_stack.pop()
+            if not n_stack.pop() == 'N':
+                return False
             if not n_stack.is_empty():
-                n_stack.pop()
+                if n_stack.pop() == 'N':
+                    return False
+                if not n_stack.is_empty():
+                    if not n_stack.pop() == 'N':
+                        return False
+                else:
+                    return False
                 n_stack.push('N')
                 return True
             else:
@@ -85,6 +115,9 @@ def analyse(ob):
                     print("RE")
                     return 0
         else:
+            if f.get(o) is None:
+                print('E')
+                return 0
             if p[f[t_stack.peek()]][f[o]] == 'N':
                 print('E')
                 return 0
@@ -96,13 +129,14 @@ def analyse(ob):
                     return 0
             elif p[f[t_stack.peek()]][f[o]] == -1:
                 t_stack.push(o)
+                n_stack.push(o)
                 print('I'+o)
                 i += 1
             elif p[f[t_stack.peek()]][f[o]] == 0:
-                t_stack.pop()
+                t_stack.push(o)
+                n_stack.push(o)
+                print('I' + o)
                 i += 1
-                print("I)")
-                print("R")
 
     pass
 
